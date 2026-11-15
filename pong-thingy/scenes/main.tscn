@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://c4u3xqevvbenk"]
+
+[ext_resource type="PackedScene" uid="uid://d0mgipkxtrfik" path="res://scenes/paddle.tscn" id="1_o5qli"]
+[ext_resource type="Script" uid="uid://dcfhefd5lgjjd" path="res://scenes/main.gd" id="1_sugp2"]
+[ext_resource type="PackedScene" uid="uid://boba4y1vdhh6n" path="res://scenes/paddle_2.tscn" id="2_0wfyh"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_g4v7s"]
+
+[node name="main" type="Node2D" unique_id=2041096345 groups=["reset_game"]]
+script = ExtResource("1_sugp2")
+
+[node name="Paddle" parent="." unique_id=1244521361 instance=ExtResource("1_o5qli")]
+position = Vector2(64, 320)
+
+[node name="Paddle2" parent="." unique_id=2031292345 instance=ExtResource("2_0wfyh")]
+position = Vector2(1088, 320)
+
+[node name="Walls" type="Node2D" parent="." unique_id=1328553503]
+
+[node name="Top" type="StaticBody2D" parent="Walls" unique_id=694112057]
+position = Vector2(512, 0)
+rotation = 3.1415927
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Top" unique_id=715421421]
+shape = SubResource("WorldBoundaryShape2D_g4v7s")
+
+[node name="Bottom" type="StaticBody2D" parent="Walls" unique_id=267291948]
+position = Vector2(512, 648)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Bottom" unique_id=1970164520]
+shape = SubResource("WorldBoundaryShape2D_g4v7s")
+
+[node name="Left" type="StaticBody2D" parent="Walls" unique_id=1821746417]
+position = Vector2(0, 320)
+rotation = 1.5707964
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Left" unique_id=116055025]
+shape = SubResource("WorldBoundaryShape2D_g4v7s")
+
+[node name="Right" type="StaticBody2D" parent="Walls" unique_id=531551646]
+position = Vector2(1152, 320)
+rotation = -1.5707964
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Right" unique_id=952872904]
+shape = SubResource("WorldBoundaryShape2D_g4v7s")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1863044275]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1851082649]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.04, 0.04, 0.04, 1)
+
+[node name="BallContainer" type="Node2D" parent="." unique_id=1452265607]
+
+[node name="ScoreElements" type="Node2D" parent="." unique_id=1250211906]
+
+[node name="LPlayer" type="Label" parent="ScoreElements" unique_id=1692904383]
+offset_left = 472.0
+offset_top = 8.0
+offset_right = 512.0
+offset_bottom = 61.0
+theme_override_font_sizes/font_size = 38
+text = "0"
+
+[node name="RPlayer" type="Label" parent="ScoreElements" unique_id=2010536319]
+offset_left = 576.0
+offset_top = 8.0
+offset_right = 616.0
+offset_bottom = 61.0
+theme_override_font_sizes/font_size = 38
+text = "0"
